@@ -1,0 +1,18 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "no-unused-vars": 2,
+        "no-self-compare": 2,
+        "no-mixed-spaces-and-tabs": 2
+    },
+    "env": {
+        "browser": true,
+        "es6": true
+    }
+}
