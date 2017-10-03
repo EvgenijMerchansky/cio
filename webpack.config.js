@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const merge = require('webpack-merge');
 const devConfig = require('./development');
-console.log(path.join(__dirname, '/dist'), 'SDASDASDASSD');
-
 
 const common = {
     entry: path.join(__dirname, 'src', '/app.jsx'),
@@ -24,7 +22,10 @@ const common = {
                     }
                 }
             },
-
+            {
+                test: /\.scss$/,
+                loader: 'style-loader!css-loader!sass-loader'
+            },
         ]
     },
     plugins: [
