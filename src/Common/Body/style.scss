@@ -40,8 +40,33 @@
   overflow: hidden;
 }
 
+.login-block{
+  display: none;
+}
+
+.active-like{
+  top: -10px;
+  opacity: .8;
+  left: 30px;
+  position: absolute;
+  display: block;
+  width: auto;
+  height: auto;
+  z-index: 2;
+}
+.like{
+
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: none; //none
+}
+
 .like:hover {
   opacity: .6!important;
+  .login-block{
+    display: none;
+  }
 }
 
 .blurText {

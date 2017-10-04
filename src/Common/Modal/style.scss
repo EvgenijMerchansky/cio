@@ -1,0 +1,38 @@
+.linkToLogin{
+    padding: 20px;
+    margin-top: -20px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ba0300;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-size: 16px;
+}
+
+.linkToLogin:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #a70300;
+}
+
+.linkToLogin:active {
+    text-decoration: none;
+    color: white;
+    background-color: #a70300;
+}
+
+.login-block{
+//display: block; // change
+width: 210px;
+    height: 80px;
+    z-index: 2;
+    padding: 10px;
+    top: 51px;
+    left: 61%;
+    background-color: #fff;
+    border: 1px solid #3b3f42;
+    position: absolute;
+}

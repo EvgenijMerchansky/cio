@@ -3,6 +3,9 @@ import Body from '../Body';
 import axios from 'axios';
 import styles from './style.scss';
 
+const REQUESTALIAS = `http://ws.audioscrobbler.com/2.0`;
+const APIKEY = `3de70bc0e205f2805864e253e870c98b`;
+
 class Category extends Component {
     constructor() {
         super();
@@ -18,14 +21,14 @@ class Category extends Component {
         });
     }
     componentDidMount() {
-        let requset = axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
+        let requset = axios.get(`${REQUESTALIAS}/?method=tag.getTopTags&api_key=${APIKEY}&format=json`);
         requset.then(response => this.setState({
             tags: response.data
         }));
     }
     getMusicWithCategory(genreName) {
         let processedGenre = genreName.indexOf(' ') ? genreName.replace(' ', '') : genreName;
-        let currentGenre = axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${processedGenre}&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
+        let currentGenre = axios.get(`${REQUESTALIAS}/?method=tag.gettopartists&tag=${processedGenre}&api_key=${APIKEY}&format=json`);
             currentGenre.then(resp => this.setState({
                 newTag: resp.data.topartists.artist
             }));

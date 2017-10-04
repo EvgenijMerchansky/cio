@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './style.scss';
+import Modal from '../Modal';
 
 class Body extends Component {
     constructor() {
@@ -8,9 +9,15 @@ class Body extends Component {
             renderData: '',
         };
     }
-    favourite() {
-        console.log('work');
-    };
+    loginFunc(e) {
+        if(e.target.nextElementSibling.className === 'like'){
+            e.target.nextElementSibling.className = 'active-like';
+            e.target.src = `https://d30y9cdsu7xlg0.cloudfront.net/png/52944-200.png`;
+        } else if (e.target.nextElementSibling.className === 'active-like') {
+            e.target.nextElementSibling.className = 'like';
+            e.target.src = `https://image.flaticon.com/icons/png/128/148/148836.png`;
+        }
+    }
     componentWillReceiveProps(nextProps){
         this.setState({
             renderData: nextProps.artists && nextProps.artists
@@ -60,8 +67,7 @@ class Body extends Component {
                                             {elem.artist ? elem.artist : elem.name}
                                         </p>
                                         <img
-                                            onClick={::this.favourite}
-                                            className={`like`}
+                                            onClick={(e) => {::this.loginFunc(e)}}
                                             src={`https://image.flaticon.com/icons/png/128/148/148836.png`}
                                             width={17}
                                             height={17}
@@ -72,6 +78,19 @@ class Body extends Component {
                                                 cursor: 'pointer'
                                             }}
                                         />
+                                        <div className={`like`}>
+                                            <div
+                                                style={{ display: 'block' }}
+                                                className={`login-block`}
+                                            >
+                                                <a
+                                                    href={`https://secure.last.fm/login`}
+                                                    className={`linkToLogin`}
+                                                >
+                                                    Sign into Last.FM
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             );

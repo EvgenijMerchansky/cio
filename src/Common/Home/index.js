@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Category from '../Category';
 import axios from 'axios';
 import styles from './style.scss';
+import Modal from '../Modal';
+
 
 const REQUESTALIAS = `http://ws.audioscrobbler.com/2.0`;
 const APIKEY = `3de70bc0e205f2805864e253e870c98b`;
@@ -11,6 +13,7 @@ class Home extends Component {
         super();
         this.state = {
             artists: '',
+            modalActive: false,
         };
     }
     componentDidMount() {
@@ -21,11 +24,25 @@ class Home extends Component {
     }
     getSoundsByTextQuery(e, queryInput) {
         e.preventDefault();
-        let query = axios.get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${queryInput}&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
+        let query = axios.get(`${REQUESTALIAS}/?method=track.search&track=${queryInput}&api_key=${APIKEY}&format=json`);
             query.then((resp) => this.setState({
                 artists: resp.data.results.trackmatches
             }));
         this.textInput.value = '';
+    }
+    loginFunc() {
+        switch (this.state.modalActive) {
+            case false:
+                this.setState({
+                    modalActive: true
+                });
+            break;
+            case true:
+                this.setState({
+                    modalActive: false
+                });
+            break;
+        }
     }
     render() {
         return(
@@ -43,7 +60,6 @@ class Home extends Component {
                         />
                     </div>
                     <div className={`searchAndLogin`}>
-                        {/*<input type={`text`}/>*/}
                         <form onSubmit={(e) => {::this.getSoundsByTextQuery(e, this.textInput.value)}}>
                             <input
                                 placeholder={`SEARCH BY SONG NAME:`}
@@ -58,13 +74,17 @@ class Home extends Component {
                             style={{ display: 'block' }}
                             className={`login-logo`}
                         />
-                        <button className={`login-button`}>
+                        <button
+                            className={`login-button`}
+                            onClick={::this.loginFunc}
+                        >
                             <img
                                 src={`https://www.etelestia.com/sites/all/themes/etelestia/home/white-arrow-down.png`}
                                 width={15}
                                 style={{ display: 'block' }}
                             />
                         </button>
+                        <Modal modal={this.state.modalActive}/>
                     </div>
                 </div>
                 <Category artistsToBody={this.state.artists}/>
