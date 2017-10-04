@@ -5,15 +5,18 @@ class Body extends Component {
     constructor() {
         super();
         this.state = {
-            artistList: '',
+            renderData: '',
         };
     }
     favourite() {
         console.log('work');
     };
-
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            renderData: nextProps.artists && nextProps.artists
+        });
+    }
     render() {
-        console.log(this, 'Body');
         return(
             <div
                 className={`contain`}
@@ -24,7 +27,7 @@ class Body extends Component {
             >
                 <div className={`container`}>
                     <div className={`generalContainer`}>
-                        {this.props.artists && this.props.artists.map((elem, index) => {
+                        {this.state.renderData && this.state.renderData.map((elem, index) => {
                             return (
                                 <div
                                     className={`subContainer`}
@@ -54,7 +57,7 @@ class Body extends Component {
                                             }}
                                         />
                                         <p className={`subContainer-text`}>
-                                            {elem.artist ? elem.artist.name : elem.name}
+                                            {elem.artist ? elem.artist : elem.name}
                                         </p>
                                         <img
                                             onClick={::this.favourite}

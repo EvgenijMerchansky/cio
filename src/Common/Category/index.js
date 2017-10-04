@@ -12,6 +12,11 @@ class Category extends Component {
             genreName: '',
         };
     }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            newTag: nextProps.artistsToBody.track ? nextProps.artistsToBody.track : nextProps.artistsToBody.artist
+        });
+    }
     componentDidMount() {
         let requset = axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
         requset.then(response => this.setState({
@@ -22,7 +27,7 @@ class Category extends Component {
         let processedGenre = genreName.indexOf(' ') ? genreName.replace(' ', '') : genreName;
         let currentGenre = axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=${processedGenre}&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
             currentGenre.then(resp => this.setState({
-                newTag: resp.data.topartists
+                newTag: resp.data.topartists.artist
             }));
             this.setState({
                 genreName: genreName
@@ -45,7 +50,7 @@ class Category extends Component {
                         );
                     })}
                 </div>
-                <Body artists={this.state.newTag === '' ? this.props.artistsToBody.artist : this.state.newTag.artist} />
+                <Body artists={this.state.newTag} />
             </div>
         );
     }

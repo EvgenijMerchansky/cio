@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../Header';
 import Category from '../Category';
 import axios from 'axios';
 import styles from './style.scss';
@@ -12,7 +11,6 @@ class Home extends Component {
         super();
         this.state = {
             artists: '',
-            currentSearch: '',
         };
     }
     componentDidMount() {
@@ -23,15 +21,14 @@ class Home extends Component {
     }
     getSoundsByTextQuery(e, queryInput) {
         e.preventDefault();
-        let query = axios.get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${queryInput}&api_key=3de70bc0e205f2805864e253e870c98b&format=json`)
+        let query = axios.get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${queryInput}&api_key=3de70bc0e205f2805864e253e870c98b&format=json`);
             query.then((resp) => this.setState({
-                currentSearch: resp.data.results.trackmatches
+                artists: resp.data.results.trackmatches
             }));
         this.textInput.value = '';
     }
-    render() { // this state currentSearch
-            console.log(this.state.currentSearch, 'currentSearch currentSearch currentSearch');
-        return( // header typing in this component
+    render() {
+        return(
             <div style={{ backgroundColor: '#3a3f41' }}>
                 <div className={`container header`}>
 
@@ -70,8 +67,7 @@ class Home extends Component {
                         </button>
                     </div>
                 </div>
-                {/*<Header/>*/}
-                <Category artistsToBody={this.state.artists !== '' && this.state.artists}/>
+                <Category artistsToBody={this.state.artists}/>
             </div>
         );
     }
