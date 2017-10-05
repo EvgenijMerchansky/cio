@@ -5,7 +5,7 @@ import styles from './style.scss';
 
 const REQUESTALIAS = `http://ws.audioscrobbler.com/2.0`;
 const APIKEY = `3de70bc0e205f2805864e253e870c98b`;
-
+// http://ws.audioscrobbler.com/2.0/?method=album.search&album= { asap } &api_key=3de70bc0e205f2805864e253e870c98b&format=json
 class Category extends Component {
     constructor() {
         super();

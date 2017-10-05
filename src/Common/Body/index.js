@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import styles from './style.scss';
 import Modal from '../Modal';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+import IndividualSingerTrack from '../IndividualSingerTrack';
+
 
 class Body extends Component {
     constructor() {
@@ -63,9 +70,15 @@ class Body extends Component {
                                                 marginRight: 10
                                             }}
                                         />
+                                        {/* Link */}
                                         <p className={`subContainer-text`}>
                                             {elem.artist ? elem.artist : elem.name}
                                         </p>
+                                        <Router>
+                                            <Route path={`/singers/singer`} component={IndividualSingerTrack}/>
+                                        </Router>
+                                        <Link to={`/singers/singer/${elem.name.replace(' ', '').toLowerCase().replace('-', '')}`}>GO!</Link>
+                                        {/* Link */}
                                         <img
                                             onClick={(e) => {::this.loginFunc(e)}}
                                             src={`https://image.flaticon.com/icons/png/128/148/148836.png`}

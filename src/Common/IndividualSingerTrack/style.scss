@@ -1,0 +1,52 @@
+.back-link{
+  margin-bottom: 20px;
+}
+
+.custom-cont{
+  border: 1px solid #e3e3e3;
+  background-color: #fff;
+  margin: 10px auto;
+}
+
+.custom-cont:hover{
+  border: solid 1px #9bd49d;
+}
+
+.render-icon{
+  display: block;
+  border: solid 2px #e3e3e3;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+
+.render-icon:hover{
+  border: solid 2px #9bd49d;
+}
+
+.render-li{
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.render-ul{
+  list-style: none;
+  padding: 0;
+}
+
+.text-block{
+  display: block;
+  padding-left: 30px;
+}
+
+.artist-name{
+  font-size: 10px;
+  margin-top: 20px;
+}
+
+.song-name{
+  font-size: 20px;
+}
