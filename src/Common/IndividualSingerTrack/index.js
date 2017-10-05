@@ -41,16 +41,10 @@ class IndividualSingerTrack extends Component {
     render() {
         let {renderData, waiting} = this.state;
         return(
-            <div
-                style={{
-                    backgroundColor: `#f4f4f4`,
-                    padding: 40,
-                }}
-            >
+            <div className={`common-container`}>
                 <Link
                     to={`/`}
                     className={`back-link`}
-                    style={{ marginBottom: 20 }}
                 >
                     {`<- Back to Home page`}
                 </Link>
