@@ -42,19 +42,20 @@ class IndividualSingerTrack extends Component {
         let {renderData, waiting} = this.state;
         return(
             <div className={`common-container`}>
+                {!waiting &&
                 <Link
                     to={`/`}
                     className={`back-link`}
                 >
-                    {`<- Back to Home page`}
+                    {`Back to Home page`}
                 </Link>
+                }
                 {waiting &&
                     <div>
                         LOADER BLOCK
                     </div>
                 }
                 {renderData && renderData.map((elem, index) => {
-                    console.log(elem);
                     return(
                         <div
                             key={index}
@@ -71,9 +72,9 @@ class IndividualSingerTrack extends Component {
                                         <p className={`artist-name`}>
                                             {elem.artist}
                                         </p>
-                                        <p className={`song-name`}>
+                                        <Link to={`/singers/singer/name/${elem.name}_${elem.artist}`} className={`song-name`}>
                                             {elem.name}
-                                        </p>
+                                        </Link>
                                     </div>
                                 </li>
                             </ul>
